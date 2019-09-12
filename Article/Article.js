@@ -128,7 +128,6 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   let thirdP = document.createElement("p");
   let expandButton = document.createElement("span");
   let buttonOpen = document.createElement("article-open");
-  // let buttonClose = document.createElement("close");
 
   //set up structure //
 
@@ -139,7 +138,7 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   article.appendChild(thirdP);
   article.appendChild(expandButton);
   expandButton.appendChild(buttonOpen);
-  // expandButton.appendChild(buttonClose);
+
 
   //set class names
 
