@@ -99,7 +99,7 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
-  //create elements //
+ 
 
   Hint: You will need to use createElement more than once here!
 
@@ -114,22 +114,45 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
-const article = document.createElement('div');
-const articleTitle = document.createElement('h2');
-const date = document.createElement('p');
-const expandButton = document.createElement('span');
+
+//create elements //
+
+const articles = document.querySelector('.articles');
+
+    function createArticles(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+      const articles = document.createElement('div');
+      const articlesTitle = document.createElement('h2');
+      const articlesDate = document.createElement('p');
+        const firstP = document.createElement('p');
+        const secondP = document.createElement('p');
+        const thirdP = document.createElement('p');
+      const expandButton = document.createElement('span');
+    
+//set up structure //
+
+articlesTitle.appendChild(articles);
+articlesDate.appendChild(articles);
+firstP.appendChild(articles);
+secondP.appendChild(articles);
+thirdP.appendChild(articles);
+expandButton.appendChild(articles);
+
+//set class names
+
+articles.classList.add('articles');
+articlesDate.classList.add('date');
+expandButton.classList.add('expand-button');
 
 
-//create structure//
+//set content
 
-// set content //
+articlesTitle.textContent = title;
+articlesDate.textContent = date;
+firstP.textContent = firstParagraph;
+secondP.textContent = secondParagraph;
+thirdP.textContent = thirdParagraph;
 
-// apply styles //
+return articles;
+}
 
-// create any event handlers// 
-
-return article; 
-const accordion = document.querySelector('.accordian');
-articleData.forEach(data => {
-  accordion.appendChild(createArticle(data));
-})
+articles.appendChild(createArticles("testing", "we are testing", "test", "test", "test"))
