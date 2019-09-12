@@ -3,7 +3,7 @@
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
-    date: 'Nov 5th, 2018',
+    date: "Nov 5th, 2018",
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
         moff wicket tatooine luke.Solo wampa wampa calrissian yoda moff.Darth grievous darth gonk darth hutt.Darth baba skywalker
         watto fett jango maul han.Mon ewok sidious sidious lando kenobi grievous gamorrean solo.Yoda wedge utapau darth calamari.
@@ -23,8 +23,8 @@ const data = [
         moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
   },
   {
-    title: 'Javascript and You, ES6',
-    date: 'May 7th, 2019',
+    title: "Javascript and You, ES6",
+    date: "May 7th, 2019",
     firstParagraph: `Alohamora wand elf parchment, Wingardium Leviosa hippogriff, house dementors betrayal. Holly, Snape centaur portkey ghost
         Hermione spell bezoar Scabbers. Peruvian-Night-Powder werewolf, Dobby pear-tickle half-moon-glasses, Knight-Bus. Padfoot
         snargaluff seeker: Hagrid broomstick mischief managed. Snitch Fluffy rock-cake, 9 ¾ dress robes I must not tell lies. Mudbloods
@@ -43,8 +43,8 @@ const data = [
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
-    title: 'React vs Angular vs Vue',
-    date: 'June 7th, 2019',
+    title: "React vs Angular vs Vue",
+    date: "June 7th, 2019",
     firstParagraph: `Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing
         elit. Venusaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charmander Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charizard Lorem ipsum dolor sit amet,
@@ -71,8 +71,8 @@ const data = [
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
-    title: 'Professional Software Development in 2019',
-    date: 'Jan 1st, 2019',
+    title: "Professional Software Development in 2019",
+    date: "Jan 1st, 2019",
     firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
           hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
           Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
@@ -117,42 +117,60 @@ const data = [
 
 //create elements //
 
-const articles = document.querySelector('.articles');
+const articles = document.querySelector(".articles");
 
-    function createArticles(title, date, firstParagraph, secondParagraph, thirdParagraph) {
-      const articles = document.createElement('div');
-      const articlesTitle = document.createElement('h2');
-      const articlesDate = document.createElement('p');
-        const firstP = document.createElement('p');
-        const secondP = document.createElement('p');
-        const thirdP = document.createElement('p');
-      const expandButton = document.createElement('span');
-    
-//set up structure //
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  let article = document.createElement("div");
+  let articleTitle = document.createElement("h2");
+  let articleDate = document.createElement("p");
+  let firstP = document.createElement("p");
+  let secondP = document.createElement("p");
+  let thirdP = document.createElement("p");
+  let expandButton = document.createElement("span");
+  let buttonOpen = document.createElement("article-open");
+  // let buttonClose = document.createElement("close");
 
-articlesTitle.appendChild(articles);
-articlesDate.appendChild(articles);
-firstP.appendChild(articles);
-secondP.appendChild(articles);
-thirdP.appendChild(articles);
-expandButton.appendChild(articles);
+  //set up structure //
 
-//set class names
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(firstP);
+  article.appendChild(secondP);
+  article.appendChild(thirdP);
+  article.appendChild(expandButton);
+  expandButton.appendChild(buttonOpen);
+  // expandButton.appendChild(buttonClose);
 
-articles.classList.add('articles');
-articlesDate.classList.add('date');
-expandButton.classList.add('expand-button');
+  //set class names
 
+  article.classList.add("article");
+  articleDate.classList.add("date");
+  expandButton.classList.add("expandButton");
+ 
 
-//set content
+  //set content
 
-articlesTitle.textContent = title;
-articlesDate.textContent = date;
-firstP.textContent = firstParagraph;
-secondP.textContent = secondParagraph;
-thirdP.textContent = thirdParagraph;
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  firstP.textContent = firstParagraph;
+  secondP.textContent = secondParagraph;
+  thirdP.textContent = thirdParagraph;
+  expandButton.textContent = "\u25bc";
 
-return articles;
+  expandButton.addEventListener("click", () => {
+    article.classList.toggle('article-open');
+  });
+
+  return article;
 }
 
-articles.appendChild(createArticles("testing", "we are testing", "test", "test", "test"))
+
+let articlesArray = data.map(item => {
+  let newArticle = createArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph);
+  return newArticle;
+});
+
+articlesArray.forEach(item => {
+  articles.appendChild(item);
+});
+
