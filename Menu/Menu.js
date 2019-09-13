@@ -41,6 +41,13 @@ const menu = document.querySelector('img.menu-button');
 function newMenu() {
 
   let menuBars = document.createElement('div')
+  let ul = document.createElement('ul');
+  let il = document.createElement('il');
+
+  menuBars.appendChild(ul);
+  menuBars.appendChild(il);
+
+  il.textContent = menuBars;
 
   menuBars.classList.add('menu');
 
@@ -52,10 +59,10 @@ function newMenu() {
 }
 header.appendChild(newMenu());
 
-// let headerArray = menuItems.map(item => {
-//   let createMenu = newMenu(item);
-//   return createMenu;
-// });
+let headerArray = menuItems.map(item => {
+  let createMenu = newMenu(item);
+  return createMenu;
+});
 
 
 // headerArray.forEach(item => {
