@@ -34,37 +34,33 @@ let menuItems = [
   
 */
 
+const header = document.querySelector('.header');
+const menuBtn = document.querySelector('.menu-button');
 
-const header = document.querySelector('div.header');
-const menu = document.querySelector('img.menu-button');
+function newMenu(items) {
 
-function newMenu() {
+  // create elements
+  const menu = document.createElement('div');
+  const ul = document.createElement('ul');
 
-  let menuBars = document.createElement('div')
-  let ul = document.createElement('ul');
-  let il = document.createElement('il');
+  items.forEach((items) => {
+    const li = document.createElement('li');
+    li.textContent = items; 
+    ul.appendChild(li);
+  })
 
-  menuBars.appendChild(ul);
-  menuBars.appendChild(il);
+   // create structure
+  menu.appendChild(ul);
 
-  il.textContent = menuBars;
+  // apply styles
+  menu.classList.add('menu');
 
-  menuBars.classList.add('menu');
+  // create event handlers
+  menuBtn.addEventListener('click', (e) => {
+    menu.classList.toggle('menu--open');
+  })    
 
-  menu.addEventListener('click', (e) => 
-    menuBars.classList.toggle('menu--open'));
-
-
-  return menuBars;
+  return menu;
 }
-header.appendChild(newMenu());
 
-let headerArray = menuItems.map(item => {
-  let createMenu = newMenu(item);
-  return createMenu;
-});
-
-
-// headerArray.forEach(item => {
-//   header.appendChild(newMenu);
-// });
+header.appendChild(newMenu(menuItems));
