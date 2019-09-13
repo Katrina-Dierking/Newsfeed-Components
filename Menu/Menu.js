@@ -37,7 +37,7 @@ let menuItems = [
 const header = document.querySelector('.header');
 const menuBtn = document.querySelector('.menu-button');
 
-function newMenu(items) {
+function menu(items) {
 
   // create elements
   const menu = document.createElement('div');
@@ -63,4 +63,4 @@ function newMenu(items) {
   return menu;
 }
 
-header.appendChild(newMenu(menuItems));
+header.appendChild(menu(menuItems));
